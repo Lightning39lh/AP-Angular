@@ -1,18 +1,10 @@
 <div class="row">
-    <h1>Educacion</h1>
+    <h1>Education</h1>
     <div class ="col-lg-1"></div>
     <div class ="col-lg-11">
-        <ul>
-           <li>
-               <h1>
-                   Estudio
-               </h1>
-               <h3>años</h3>
-               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                   Molestias enim quae ipsa, atque ad corrupti maiores eveniet porro natus similique 
-                   labore debitis officiis reprehenderit libero alias vero dicta nisi! Atque?
-                </p>
-           </li> 
-        </ul>
+            <div *ngFor=" let education of educations">
+                <h2>{{education.title}}</h2>
+                <p>{{education.description}}</p>
+            </div>
     </div>
 </div>

@@ -6,10 +6,8 @@ import { GuardGuard } from './services/guard.guard';
 
 const routes: Routes = [
   {path:'login',component:LoginComponent},
-  {path:'me',component:PortfoilComponent},
-  {path:'edit',component:PortfoilComponent,canActivate:[GuardGuard]},
+  {path:':username',component:PortfoilComponent,canActivate:[GuardGuard]},
   {path:'',redirectTo:'login',pathMatch:'full'}
-
 ];
 
 @NgModule({

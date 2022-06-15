@@ -45,8 +45,8 @@ export class LoginComponent implements OnInit {
     event.preventDefault;
     console.log(this.form.value);
     this.authenticationService.Login(this.form.value).subscribe(data =>{
-      console.log("DATA:" + JSON.stringify(data));
-      this.ruta.navigate(['/me']);
+      console.log(this.form.value.username);
+      this.ruta.navigate(['/'+this.form.value.username]);
     })
   }
   addUser(user:User){

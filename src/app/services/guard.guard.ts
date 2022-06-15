@@ -16,6 +16,7 @@ export class GuardGuard implements CanActivate {
       {
         return true;
       }
+      
       this.rutas.navigate(['/login']);
       return false;
   }

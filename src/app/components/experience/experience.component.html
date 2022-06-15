@@ -1,18 +1,13 @@
 <div class="row">
-    <h1>Experiencia laboral</h1>
+    <h1>Experience</h1>
     <div class ="col-lg-1"></div>
     <div class ="col-lg-11">
-        <ul>
-           <li>
-               <h1>
-                   trabajo
-               </h1>
-               <h3>años</h3>
-               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                   Molestias enim quae ipsa, atque ad corrupti maiores eveniet porro natus similique 
-                   labore debitis officiis reprehenderit libero alias vero dicta nisi! Atque?
-                </p>
-           </li> 
-        </ul>
+
+            <div *ngFor=" let experience of experiences">
+                <h2>{{experience.position}}</h2>
+                <h3>{{experience.company}}</h3>
+                <p>{{experience.description}}</p>
+            </div>
+
     </div>
 </div>

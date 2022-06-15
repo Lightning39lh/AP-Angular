@@ -16,8 +16,9 @@ import { SkillsComponent } from './components/skills/skills.component';
 import { ProyectsComponent } from './components/proyects/proyects.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProyectService } from './services/proyect.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { PortfoilComponent } from './components/portfoil/portfoil.component';
+import { InterceptorService } from './services/interceptor.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,9 @@ import { PortfoilComponent } from './components/portfoil/portfoil.component';
     BrowserModule,
     ReactiveFormsModule,
   ],
-  providers: [ProyectService],
+  providers: [ProyectService,
+  { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi:true}
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

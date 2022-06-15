@@ -1,36 +1,29 @@
-
-
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, of } from 'rxjs';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { AuthenticationService } from './authentication.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProyectService {
-
+export class SkillService {
   id:number = 0;
   private miApiUrl = 'http://localhost:8080';
-  private proyectUrl = this.miApiUrl + '/projects' ;
+  private skillUrl = this.miApiUrl + '/skills' ;
 
   constructor(private http: HttpClient, private aS: AuthenticationService) { }
 
-  async getAllProyects(): Promise<Observable<any>> {
+  async getAllSkills(): Promise<Observable<any>> {
     
     var currentUser = this.aS.AuthenticatedUser;
     
     this.getId(currentUser.username).subscribe(data => {
-
       this.id = data;
     })
     await new Promise(f => setTimeout(f, 50));
-    return this.http.get<any>(this.proyectUrl+'/'+this.id);  
+    return this.http.get<any>(this.skillUrl+'/'+this.id);  
   }
-
   getId(username: String): Observable<any> {
     return this.http.get<any>(this.miApiUrl + "/MyUsers/" + username);
   }
-
-  
 }

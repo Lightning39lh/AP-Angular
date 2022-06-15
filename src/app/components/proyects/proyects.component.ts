@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Project } from 'src/app/models/Project';
 import { ProyectService } from '../../services/proyect.service';
 
 @Component({
@@ -10,26 +11,22 @@ import { ProyectService } from '../../services/proyect.service';
   
 export class ProyectsComponent implements OnInit {
 
-  proyects: any;
-  proyect2: any;
+
+  projects: Project[] = [];
   constructor(private proyectService: ProyectService) { }
 
   ngOnInit(): void {
+   
    this.getAllProyects();
-   this.getProyect();
+ 
+
   }
 
  // connect angular with rest api 
-  getAllProyects(): void {
-    this.proyectService.getAllProyects().subscribe(data => {
-      console.log(data);
-      this.proyects = data;
+  async getAllProyects(): Promise<void> {
+    (await this.proyectService.getAllProyects()).subscribe(data => {
+      this.projects = data;
      })
     }
-    getProyect(): void {
-      this.proyectService.getProyect(2).subscribe(data => {
-        console.log(data);
-        this.proyect2 = data;
-       })
-      }
+
  }

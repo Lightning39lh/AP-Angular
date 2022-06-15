@@ -1,12 +1,14 @@
-<div class="proyects">
-    <h1> Proyectos propios</h1>
-    <div *ngFor=" let proyect of proyects">
-        <h1>{{proyect.title}}</h1>
-        <p>{{proyect.description}}</p>
-
+<div class="row">
+    <h1> Projects</h1>
+    <div class ="col-lg-1"></div>
+    <div class ="col-lg-11">
+            <div *ngFor=" let project of projects">
+                <h2>{{project.title}}</h2>
+                <p>{{project.description}}</p>
+                <a href="{{project.link}}">
+                    <p >{{project.link}}</p>
+                 </a>
+            </div>
     </div>
-    <div *ngFor=" let proyectn of proyect2">
-        <h1>{{proyectn.title}}</h1>
-        <p>{{proyectn.description}}</p>
-    </div>
+    
 </div>
