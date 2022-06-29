@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
 import { HeaderComponent } from './components/header/header.component';
 import { LogoApComponent } from './components/logo-ap/logo-ap.component';
 import { LinksComponent } from './components/links/links.component';
@@ -17,8 +16,17 @@ import { ProyectsComponent } from './components/proyects/proyects.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProyectService } from './services/proyect.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { PortfoilComponent } from './components/portfoil/portfoil.component';
+import { PortfoilComponent } from './components/portfoil-edit/portfoil-edit.component';
 import { InterceptorService } from './services/interceptor.service';
+import { PortfoilShowComponent } from './components/portfoil-show/portfoil-show.component';
+import { AboutMeShowComponent } from './components/about-me-show/about-me-show.component';
+import { BannerShowComponent } from './components/banner-show/banner-show.component';
+import { EducationShowComponent } from './components/education-show/education-show.component';
+import { ExperienceShowComponent } from './components/experience-show/experience-show.component';
+import { HeaderShowComponent } from './components/header-show/header-show.component';
+import { LinksShowComponent } from './components/links-show/links-show.component';
+import { ProyectsShowComponent } from './components/proyects-show/proyects-show.component';
+import { SkillsShowComponent } from './components/skills-show/skills-show.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +42,16 @@ import { InterceptorService } from './services/interceptor.service';
     ProyectsComponent,
     LoginComponent,
     PortfoilComponent,
+    PortfoilShowComponent,
+    AboutMeShowComponent,
+    BannerShowComponent,
+    EducationShowComponent,
+    ExperienceShowComponent,
+    HeaderShowComponent,
+    LinksShowComponent,
+    ProyectsShowComponent,
+    SkillsShowComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -42,6 +60,7 @@ import { InterceptorService } from './services/interceptor.service';
     HttpClientModule,
     BrowserModule,
     ReactiveFormsModule,
+    
   ],
   providers: [ProyectService,
   { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi:true}

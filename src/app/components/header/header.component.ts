@@ -8,13 +8,10 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private ruta:Router) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
-  logout(){
-    sessionStorage.clear();
-    this.ruta.navigate(['/login']);
-  }
+  
 
 }

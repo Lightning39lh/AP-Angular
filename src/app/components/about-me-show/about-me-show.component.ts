@@ -4,11 +4,11 @@ import { Person } from 'src/app/models/Person';
 import { AboutMeService } from 'src/app/services/about-me.service';
 
 @Component({
-  selector: 'app-about-me',
-  templateUrl: './about-me.component.html',
-  styleUrls: ['./about-me.component.css']
+  selector: 'app-about-me-show',
+  templateUrl: './about-me-show.component.html',
+  styleUrls: ['./about-me-show.component.css']
 })
-export class AboutMeComponent implements OnInit {
+export class AboutMeShowComponent implements OnInit {
   username:string;
   person: Person= new Person("","","","")
   constructor(private personService: AboutMeService, private route: ActivatedRoute) { }
@@ -22,7 +22,7 @@ export class AboutMeComponent implements OnInit {
 
  // connect angular with rest api 
   async getAllPersons(): Promise<void> {
-    (await this.personService.getAllPersonsPrivate()).subscribe(data => {
+    (await this.personService.getAllPersons(this.username)).subscribe(data => {
       this.person = data;
      })
     }

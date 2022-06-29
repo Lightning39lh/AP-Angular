@@ -14,6 +14,7 @@ export class EducationService {
 
   constructor(private http: HttpClient, private aS: AuthenticationService) { }
 
+  //for private
   async getAllEducations(): Promise<Observable<any>> {
     
     var currentUser = this.aS.AuthenticatedUser;
@@ -22,12 +23,22 @@ export class EducationService {
 
       this.id = data;
     })
-    await new Promise(f => setTimeout(f, 50));
-    return this.http.get<any>(this.educationUrl+'/'+this.id);  
+    await new Promise(f => setTimeout(f, 100));
+    return this.http.get<any>(this.educationUrl+'/get/'+this.id);  
+  }
+  //for public
+  async getAllEducationsPublic(currentUser: string): Promise<Observable<any>> {
+ 
+    this.getId(currentUser).subscribe(data => {
+
+      this.id = data;
+    })
+    await new Promise(f => setTimeout(f, 100));
+    return this.http.get<any>(this.educationUrl+'/get/'+this.id);  
   }
 
   getId(username: String): Observable<any> {
-    return this.http.get<any>(this.miApiUrl + "/MyUsers/" + username);
+    return this.http.get<any>(this.miApiUrl + "/MyUsers/get/" + username);
   }
 
 }

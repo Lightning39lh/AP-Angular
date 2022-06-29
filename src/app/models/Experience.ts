@@ -6,11 +6,6 @@ export class Experience {
     position:string;
     description:string;
 
-
-    
-    
-
-
     constructor(company:string , description: string,position:string){
         this.company=company;
         this.description=description;

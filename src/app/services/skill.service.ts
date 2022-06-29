@@ -20,10 +20,22 @@ export class SkillService {
     this.getId(currentUser.username).subscribe(data => {
       this.id = data;
     })
-    await new Promise(f => setTimeout(f, 50));
-    return this.http.get<any>(this.skillUrl+'/'+this.id);  
+    await new Promise(f => setTimeout(f, 100));
+    return this.http.get<any>(this.skillUrl+'/get/'+this.id);  
   }
+
+  //for public
+  async getAllSkillsPublic(currentUser: string): Promise<Observable<any>> {
+ 
+    this.getId(currentUser).subscribe(data => {
+
+      this.id = data;
+    })
+    await new Promise(f => setTimeout(f, 100));
+    return this.http.get<any>(this.skillUrl+'/get/'+this.id);  
+  }
+
   getId(username: String): Observable<any> {
-    return this.http.get<any>(this.miApiUrl + "/MyUsers/" + username);
+    return this.http.get<any>(this.miApiUrl + "/MyUsers/get/" + username);
   }
 }

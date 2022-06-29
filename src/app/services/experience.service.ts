@@ -14,34 +14,26 @@ export class ExperienceService {
   private experienceUrl = this.miApiUrl + '/experience' ;
 
   constructor(private http: HttpClient, private aS: AuthenticationService, ) { }
-/*
-  async getAllExperiences(): Promise<Observable<any>> {
-    
+
+  async getAllExperiencesPrivate(): Promise<Observable<any>> {
     var currentUser = this.aS.AuthenticatedUser;
-    
     this.getId(currentUser.username).subscribe(data => {
       this.id = data;
-      console.log(data);
     })
-    await new Promise(f => setTimeout(f, 50));
-    return this.http.get<any>(this.experienceUrl+'/'+this.id);  
+    await new Promise(f => setTimeout(f, 100));
+    return this.http.get<any>(this.experienceUrl+'/get/'+this.id);  
   }
-  getId(username: String): Observable<any> {
-    console.log(username);
-    return this.http.get<any>(this.miApiUrl + "/MyUsers/" + username);
-  }*/
   async getAllExperiences(username): Promise<Observable<any>> {
    
     this.getId(username).subscribe(data => {
       this.id = data;
-      console.log(data);
     })
-    await new Promise(f => setTimeout(f, 50));
-    return this.http.get<any>(this.experienceUrl+'/'+this.id);  
+    await new Promise(f => setTimeout(f, 100));
+    
+    return this.http.get<any>(this.experienceUrl+'/get/'+this.id);  
   }
-  getId(username: String): Observable<any> {
-    console.log(username);
-    return this.http.get<any>(this.miApiUrl + "/MyUsers/" + username);
+    getId(username: String): Observable<any> {
+    return this.http.get<any>(this.miApiUrl + "/MyUsers/get/" + username);
   }
   
 }

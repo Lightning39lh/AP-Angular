@@ -46,7 +46,8 @@ export class LoginComponent implements OnInit {
     console.log(this.form.value);
     this.authenticationService.Login(this.form.value).subscribe(data =>{
       console.log(this.form.value.username);
-      this.ruta.navigate(['/'+this.form.value.username]);
+      //this.ruta.navigate(['/'+this.form.value.username]);
+      this.ruta.navigate(['/edit']);
     })
   }
   addUser(user:User){
