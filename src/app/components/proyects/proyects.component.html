@@ -1,14 +1,149 @@
 <div class="row">
+  
+  <div class="col-8 col-sm-3">
     <h1> Projects</h1>
-    <div class ="col-lg-1"></div>
-    <div class ="col-lg-11">
-            <div *ngFor=" let project of projects">
-                <h2>{{project.title}}</h2>
-                <p>{{project.description}}</p>
-                <a href="{{project.link}}">
-                    <p >{{project.link}}</p>
-                 </a>
-            </div>
-    </div>
-    
+  </div>
+  <div class="col-4 col-sm-9">
+    <button class="btn gap-1 btn btn-outline-success" 
+    data-bs-toggle="modal" 
+    data-bs-target="#addProject">
+      <i class="fa-solid fa-plus"></i>
+    </button>
+  </div>
+ 
+      <div class="row" *ngFor="let project of projects">
+        <div class="col-9 col-sm-11">
+          <h2>{{project.title}}</h2>
+          <p>{{project.description}}</p>
+          <a href="{{project.link}}">
+            <p>{{project.link}}</p>
+          </a>
+        </div>
+  
+        <div class="col-3 col-sm-1 ">
+          <a
+          (click)="openEdit(editProject, project)"
+          class="btn btn-edit p-0"
+          ><i class="fa-solid fa-pen"></i></a>
+          <a 
+            (click)="openDelete(addProject, project)"
+            class="btn btn-edit p-0"
+            ><i class="fa-solid fa-eraser"></i
+          ></a>
+        </div>
+
+
+
 </div>
+
+
+
+<!-- Add Proyecto template -->
+<div
+    class="modal fade"
+    id="addProject"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="exampleModalLabel">Add Project</h4>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+
+          <form (ngSubmit)="addProject(project)">
+            <div class="form-group">
+              <label>Title:</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Project title"
+                [(ngModel)]="project.title"
+                name="title"
+              />
+              <label>Description:</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Description of the project"
+                [(ngModel)]="project.description"
+                name="description"
+              />
+              <label>Link:</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Link of the repositorie or project"
+                [(ngModel)]="project.link"
+                name="link"
+              />
+            </div>
+            <br />
+            <div class="row mb-3">
+              <button type="submit" class="btn btn-primary btn-lg btn-block" data-bs-dismiss="modal">Create</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+<!-- Edit Proyecto template -->
+<ng-template #editProject let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title2">Edit Project</h4>
+    <button
+      type="button"
+      class="btn-close btn"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="editForm" novalidate>
+      <div class="form-group">
+        <label for="projectTitle">Project Title:</label>
+        <div class="input-group">
+          <input formControlName="title" class="form-control" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="descriptionProject">description:</label>
+        <div class="input-group">
+          <textarea formControlName="description" class="form-control"></textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="linkProject">link:</label>
+        <div class="input-group">
+          <textarea formControlName="link" class="form-control"></textarea>
+        </div>
+      </div>
+    </form>
+
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="modal.close('Save click')"
+      >
+        Close
+      </button>
+      <button data-dismiss="modal" class="btn btn-danger" (click)="onEdit()">
+        Update
+      </button>
+    </div>
+  </div>
+
+
+</ng-template>

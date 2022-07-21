@@ -27,6 +27,8 @@ import { HeaderShowComponent } from './components/header-show/header-show.compon
 import { LinksShowComponent } from './components/links-show/links-show.component';
 import { ProyectsShowComponent } from './components/proyects-show/proyects-show.component';
 import { SkillsShowComponent } from './components/skills-show/skills-show.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
@@ -60,7 +62,7 @@ import { SkillsShowComponent } from './components/skills-show/skills-show.compon
     HttpClientModule,
     BrowserModule,
     ReactiveFormsModule,
-    
+    NgbModule,
   ],
   providers: [ProyectService,
   { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi:true}

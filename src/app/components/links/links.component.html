@@ -1,14 +1,63 @@
 <div>
-     <a href="https://github.com/Lightning39lh">
-        <img src="../../../assets/github.png" id="github">
-     </a>
-     <a href="https://www.linkedin.com/in/marcos-hernan-bracciale-sauro-640109179/">
-        <img src="../../../assets/linkedin.png" id="linkedin">
-     </a>
-     <div >
-      <button class="btn btn-clear text-white"(click)="logout()"> Logout</button>
-    </div>
+   <a href={{link.github}}>
+      <img src="../../../assets/github.png" id="github">
+   </a>
+   <a href={{link.linkedin}}>
+      <img src="../../../assets/linkedin.png" id="linkedin">
+   </a>
+   <a
+   (click)="openEdit(editLink, link)"
+   class="btn btn-edit p-0 text-white"
+   ><i class="fa-solid fa-pen" style='font-size:36px'></i></a>
+   <a
+   (click)="logout()"
+   class="btn btn-edit p-0 text-white"
+   ><i class="fa-solid fa-right-from-bracket" style='font-size:36px'></i></a>
+    
 </div>
 
 
 
+<!-- Edit Links template -->
+<ng-template #editLink let-modal>
+   <div class="modal-header">
+     <h4 class="modal-title" id="modal-basic-title2">Edit Links</h4>
+     <button
+       type="button"
+       class="btn-close btn"
+       aria-label="Close"
+       (click)="modal.dismiss('Cross click')"
+     >
+     </button>
+   </div>
+   <div class="modal-body">
+     <form [formGroup]="editForm" novalidate>
+       <div class="form-group">
+         <label for="Linkedin">LinkedIn:</label>
+         <div class="input-group">
+           <input formControlName="linkedin" class="form-control" />
+         </div>
+       </div>
+       <div class="form-group">
+         <label for="GitHub">GitHub:</label>
+         <div class="input-group">
+           <input formControlName="github" class="form-control" />
+         </div>
+       </div>
+     </form>
+ 
+     <div class="modal-footer">
+       <button
+         type="button"
+         class="btn btn-primary"
+         (click)="modal.close('Save click')"
+       >
+         Close
+       </button>
+       <button data-dismiss="modal" class="btn btn-danger" (click)="onEdit()">
+         Update
+       </button>
+     </div>
+   </div>
+
+</ng-template>

@@ -4,7 +4,8 @@ export class Project {
     id?:number;
     title:string ;
     description:string;
-    link:string
+    link:string;
+    My_User_Id:number;
     
     
 
