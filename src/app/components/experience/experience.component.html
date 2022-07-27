@@ -1,13 +1,135 @@
 <div class="row">
-    <h1>Experience</h1>
-    <div class ="col-lg-1"></div>
-    <div class ="col-lg-11">
-
-            <div *ngFor=" let experience of experiences">
-                <h2>{{experience.position}}</h2>
-                <h3>{{experience.company}}</h3>
-                <p>{{experience.description}}</p>
-            </div>
-
+    
+    <div class="col-6">
+        <h1>Experience</h1>
+    </div>
+    <div class="col-6">
+        <a class="btn btn-edit p-0" (click)="openAdd(addExperience)"> <i class="fa-solid fa-square-plus"
+                style='font-size:36px'></i> </a>
     </div>
 </div>
+    <div class="row" *ngFor=" let experience of experiences">
+        <div class="col-3 col-sm-11">
+        <h2>{{experience.position}}</h2>
+        <h3>{{experience.company}}</h3>
+        <p>{{experience.description}}</p>
+        </div>
+    
+    <div class="col-3 col-sm-1 ">
+        <a (click)="openEdit(editExperience, experience)" class="btn btn-edit p-0"><i class="fa-solid fa-pen"></i></a>
+        <a (click)="openDelete(deleteExperience, experience)" class="btn btn-edit p-0"><i
+                class="fa-solid fa-eraser"></i></a>
+    </div>
+</div>
+
+
+
+
+<!-- Add Experience template -->
+<ng-template #addExperience let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title2">Add Experience</h4>
+        <button type="button" class="btn-close btn" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="editForm" novalidate>
+
+            <div class="form-group">
+                <label for="experienceCompany">Company:</label>
+                <div class="input-group">
+                    <input formControlName="company" class="form-control" />
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label for="experiencePosition">Position:</label>
+                <div class="input-group">
+                    <input formControlName="position" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="descriptionExperience">Description:</label>
+                <div class="input-group">
+                    <textarea formControlName="description" class="form-control"></textarea>
+                </div>
+            </div>
+        </form>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" (click)="modal.close('Save click')">
+                Close
+            </button>
+            <button data-dismiss="modal" class="btn btn-danger" (click)="onAdd()">
+                Add
+            </button>
+        </div>
+    </div>
+</ng-template>
+
+
+<!-- Edit Experience template -->
+<ng-template #editExperience let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title2">Edit Experience</h4>
+        <button type="button" class="btn-close btn" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="editForm" novalidate>
+
+            <div class="form-group">
+                <label for="experienceCompany">Company:</label>
+                <div class="input-group">
+                    <input formControlName="company" class="form-control" />
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label for="experiencePosition">Position:</label>
+                <div class="input-group">
+                    <input formControlName="position" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="descriptionExperience">Description:</label>
+                <div class="input-group">
+                    <textarea formControlName="description" class="form-control"></textarea>
+                </div>
+            </div>
+        </form>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" (click)="modal.close('Save click')">
+                Close
+            </button>
+            <button data-dismiss="modal" class="btn btn-danger" (click)="onEdit()">
+                Update
+            </button>
+        </div>
+    </div>
+
+
+</ng-template>
+
+
+<!-- delete Experience template -->
+
+<ng-template #deleteExperience let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Delete Experience</h4>
+        <button type="button" class="btn-close btn" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        </button>
+    </div>
+    <div class="modal-body">
+        <h3>Are you sure to delete? </h3>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="modal.close('Save click')">
+            Cancel
+        </button>
+        <button data-dismiss="modal" class="btn btn-danger" (click)="onDelete()">
+            Delete
+        </button>
+    </div>
+</ng-template>

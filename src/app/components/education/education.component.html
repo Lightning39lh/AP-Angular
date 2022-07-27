@@ -1,10 +1,138 @@
 <div class="row">
-    <h1>Education</h1>
-    <div class ="col-lg-1"></div>
-    <div class ="col-lg-11">
-            <div *ngFor=" let education of educations">
-                <h2>{{education.title}}</h2>
-                <p>{{education.description}}</p>
-            </div>
+
+    <div class="col-6">
+        <h1>Education</h1>
     </div>
+    <div class="col-6">
+        <a class="btn btn-edit p-0" (click)="openAdd(addEducation)"> <i class="fa-solid fa-square-plus"
+                style='font-size:36px'></i> </a>
+    </div>
+</div>
+<div class="row" *ngFor=" let education of educations">
+    <div class="col-3 col-sm-11">
+        <h2>{{education.title}}</h2>
+        <h3>{{education.place}}</h3>
+        <p>{{education.description}}</p>
+    </div>
+
+    <div class="col-3 col-sm-1 ">
+        <a (click)="openEdit(editEducation, education)" class="btn btn-edit p-0"><i class="fa-solid fa-pen"></i></a>
+        <a (click)="openDelete(deleteEducation, education)" class="btn btn-edit p-0"><i
+                class="fa-solid fa-eraser"></i></a>
+    </div>
+
+
+
+</div>
+
+<!-- Add Education template -->
+<ng-template #addEducation let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title2">Add Education</h4>
+        <button type="button" class="btn-close btn" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="editForm" novalidate>
+
+            <div class="form-group">
+                <label for="educationTitle">Title:</label>
+                <div class="input-group">
+                    <input formControlName="title" class="form-control" />
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label for="educationPlace">Place:</label>
+                <div class="input-group">
+                    <input formControlName="place" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="descriptionProject">Description:</label>
+                <div class="input-group">
+                    <textarea formControlName="description" class="form-control"></textarea>
+                </div>
+            </div>
+        </form>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" (click)="modal.close('Save click')">
+                Close
+            </button>
+            <button data-dismiss="modal" class="btn btn-danger" (click)="onAdd()">
+                Add
+            </button>
+        </div>
+    </div>
+</ng-template>
+
+
+<!-- Edit Education template -->
+<ng-template #editEducation let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title2">Edit Education</h4>
+        <button type="button" class="btn-close btn" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="editForm" novalidate>
+
+            <div class="form-group">
+                <label for="educationTitle">Title:</label>
+                <div class="input-group">
+                    <input formControlName="title" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="educationPlace">Place:</label>
+                <div class="input-group">
+                    <input formControlName="place" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="descriptionEducation">description:</label>
+                <div class="input-group">
+                    <textarea formControlName="description" class="form-control"></textarea>
+                </div>
+            </div>
+        </form>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" (click)="modal.close('Save click')">
+                Close
+            </button>
+            <button data-dismiss="modal" class="btn btn-danger" (click)="onEdit()">
+                Update
+            </button>
+        </div>
+    </div>
+
+
+</ng-template>
+
+
+<!-- delete Education template -->
+
+<ng-template #deleteEducation let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Delete Education</h4>
+        <button type="button" class="btn-close btn" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        </button>
+    </div>
+    <div class="modal-body">
+        <h3>Are you sure to delete? </h3>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="modal.close('Save click')">
+            Cancel
+        </button>
+        <button data-dismiss="modal" class="btn btn-danger" (click)="onDelete()">
+            Delete
+        </button>
+    </div>
+</ng-template>
+<div class="col-lg-1"></div>
+<div class="col-lg-11">
+
 </div>

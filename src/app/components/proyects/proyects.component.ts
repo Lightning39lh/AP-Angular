@@ -41,7 +41,6 @@ export class ProyectsComponent implements OnInit {
    this.proyectService.getId(currentUser.username).subscribe(data => {
       this.UserId = data;
     })
-    console.log(this.UserId);
   }
 
  // connect angular with rest api 
@@ -50,6 +49,14 @@ export class ProyectsComponent implements OnInit {
       this.projects = data;
      })
     }
+
+openAdd(targetModal) {
+  this.modalService.open(targetModal, {
+    centered: true,
+    backdrop: 'static',
+    size: 'lg'
+    });
+ }
 
 openEdit(targetModal, project:Project) {
   this.modalService.open(targetModal, {
@@ -75,18 +82,26 @@ openEdit(targetModal, project:Project) {
     });
   }
 
-  addProject(project: Project){
+  
+
+  onAdd(){
   this.UserId;
-    this.proyectService.addProject(project,this.UserId).subscribe(data => {console.log("se agrego bien");
+    this.proyectService.addProject(this.editForm.value,this.UserId).subscribe(data => {console.log("se agrego bien");
     });
     location.reload();
   }
 
   onEdit(){
     console.log(this.editForm.value);
-    this.proyectService.editProject(this.editForm.value,this.UserId).subscribe(data => {console.log("se edito bien");
+    this.proyectService.editProject(this.editForm.value,this.UserId).subscribe(data => {
+      console.log("se edito bien");
   });
   location.reload();
   }
  
+  onDelete(){
+    this.proyectService.deleteProject(this.deleteId).subscribe(data => {console.log("se elimino bien");
+  });
+  location.reload();
  }
+}

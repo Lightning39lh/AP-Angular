@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Person } from '../models/Person';
 import { AuthenticationService } from './authentication.service';
 
 @Injectable({
@@ -30,6 +31,12 @@ export class AboutMeService {
     })
     await new Promise(f => setTimeout(f, 100));
     return this.http.get<any>(this.personUrl+'/get/'+this.id);  
+  }
+
+  
+  editPerson(person :Person, userId: number){
+    
+    return this.http.post<Person>(this.personUrl+"/edit/"+userId,person);
   }
   getId(username: String): Observable<any> {
     return this.http.get<any>(this.miApiUrl + "/MyUsers/get/" + username);

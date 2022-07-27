@@ -1,15 +1,70 @@
+<img  ng-show="person.banner" src="{{person.banner}}" onError="angular.element(this).scope().product.img = false" alt="">
 <div class="row">
     <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
-        <img src="{{person.img}}" 
-        class="img-fluid"
-        id="perfilPhoto">
+        <img ng-show="person.img" src="{{person.img}}" onError="angular.element(this).scope().product.img = false" class="img-fluid" id="perfilPhoto"/>
+
+        <!-- <img src="{{person.img}}" class="img-fluid" id="perfilPhoto"> -->
     </div>
     <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
         <p id="name">{{person.fullName}}</p>
         <p>{{person.degree}}</p>
     </div>
     <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-        <h1>Acerca de mi</h1>
+        <a (click)="openEdit(editPerson, person)" class="btn btn-edit p-0"><i class="fa-solid fa-pen"></i></a>
+        <h1>About me</h1>
         <p>{{person.aboutMe}}</p>
     </div>
+
 </div>
+
+
+<ng-template #editPerson let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title2">Edit User</h4>
+        <button type="button" class="btn-close btn" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="editForm" novalidate>
+            <div class="form-group">
+                <label for="fullName">Fullname:</label>
+                <div class="input-group">
+                    <input formControlName="fullName" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="degree">Degree:</label>
+                <div class="input-group">
+                    <textarea formControlName="degree" class="form-control"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="img">Perfil Photo:</label>
+                <img src="{{person.img}}" class="img-fluid" >
+                <input type="file" accept=".jpg,.png" alife-file-to-base64 (onFileChanged)="onImgChanged($event)" formControlName="img" >
+            </div>
+            <div class="form-group">
+                <label for="banner">Banner:</label>
+                <img src="{{person.banner}}" class="img-fluid" >
+                <input type="file" accept=".jpg,.png" alife-file-to-base64 (onFileChanged)="onBannerChanged($event)" formControlName="banner" >
+            </div>
+            <div class="form-group">
+                <label for="aboutMe">About:</label>
+                <div class="input-group">
+                    <textarea formControlName="aboutMe" class="form-control"></textarea>
+                </div>
+            </div>
+        </form>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" (click)="modal.close('Save click')">
+                Close
+            </button>
+            <button data-dismiss="modal" class="btn btn-danger" (click)="onEdit()">
+                Update
+            </button>
+        </div>
+    </div>
+
+
+</ng-template>

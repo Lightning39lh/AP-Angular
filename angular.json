@@ -10,6 +10,7 @@
           "strict": true
         }
       },
+      
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -27,6 +28,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/custom-theme.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/bootstrap/dist/css/bootstrap.css",
               "src/styles.css"
@@ -99,11 +101,17 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "node_modules",
+                "src/assets/styles"
+              ]}
           }
         }
       }
     }
   },
+  
   "defaultProject": "portfoil"
 }

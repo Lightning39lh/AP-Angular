@@ -13,6 +13,8 @@ import { SingInService } from 'src/app/services/sing-in.service';
 export class LoginComponent implements OnInit {
   form:FormGroup;
   user:User = new User("","");
+  username:string;
+  users:User[] = [];
   constructor(private formBuilder:FormBuilder, private sS:SingInService, private authenticationService:AuthenticationService, private ruta:Router){
     this.form=this.formBuilder.group(
       {
@@ -29,6 +31,8 @@ export class LoginComponent implements OnInit {
 
   }
   ngOnInit(): void {
+    this.getAllUsers();
+    console.log(this.user);
   }
   //para acceder a los form
   get Username()
@@ -37,6 +41,17 @@ export class LoginComponent implements OnInit {
   }
   get Password(){
     return this.form.get('password');
+  }
+
+  getAllUsers() {
+    (this.sS.getAllUsers()).subscribe(data => {
+      this.users = data;
+     })
+    }
+
+  toPortfoil(username:String){
+    console.log(username);
+    this.ruta.navigate(['/'+username]);
   }
 
   onSend(event:Event)

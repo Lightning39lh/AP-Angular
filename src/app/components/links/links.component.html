@@ -1,26 +1,28 @@
-<div>
-   <a href={{link.github}}>
-      <img src="../../../assets/github.png" id="github">
-   </a>
-   <a href={{link.linkedin}}>
-      <img src="../../../assets/linkedin.png" id="linkedin">
-   </a>
-   <a
+<div class="row" id="topDiv">
+  <div class="col">
+     <img src="../../../assets/APLogo.png" id="logoAp">
+  </div>
+  <div class="col d-flex justify-content-end">
+     <a href={{link.github}}>
+        <img src="../../../assets/github.png" id="link">
+     </a>
+     <a href={{link.linkedin}}>
+        <img src="../../../assets/linkedin.png" id="link">
+     </a>
+     <a 
    (click)="openEdit(editLink, link)"
-   class="btn btn-edit p-0 text-white"
+   class="btn btn-edit p-0 text-white " id="link"
    ><i class="fa-solid fa-pen" style='font-size:36px'></i></a>
+
    <a
    (click)="logout()"
-   class="btn btn-edit p-0 text-white"
+   class="btn btn-edit p-0 text-white"id="link"
    ><i class="fa-solid fa-right-from-bracket" style='font-size:36px'></i></a>
-    
-</div>
-
-
+  </div>
 
 <!-- Edit Links template -->
-<ng-template #editLink let-modal>
-   <div class="modal-header">
+<ng-template #editLink let-modal >
+   <div class="modal-header" id="modal">
      <h4 class="modal-title" id="modal-basic-title2">Edit Links</h4>
      <button
        type="button"
@@ -30,7 +32,7 @@
      >
      </button>
    </div>
-   <div class="modal-body">
+   <div class="modal-body" id="modal">
      <form [formGroup]="editForm" novalidate>
        <div class="form-group">
          <label for="Linkedin">LinkedIn:</label>

@@ -1,15 +1,14 @@
+<img  ng-show="person.banner" src="{{person.banner}}" onError="angular.element(this).scope().product.img = false" alt="">
 <div class="row">
     <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
-        <img src="{{person.img}}" 
-        class="img-fluid"
-        id="perfilPhoto">
+        <img ng-show="person.img" src="{{person.img}}" onError="angular.element(this).scope().product.img = false" class="img-fluid" id="perfilPhoto"/>
     </div>
     <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
         <p id="name">{{person.fullName}}</p>
         <p>{{person.degree}}</p>
     </div>
     <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-        <h1>Acerca de mi</h1>
+        <h1>About me</h1>
         <p>{{person.aboutMe}}</p>
     </div>
 </div>

@@ -1,8 +1,8 @@
 
 
 import { Injectable } from '@angular/core';
-import { catchError, Observable, of } from 'rxjs';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { AuthenticationService } from './authentication.service';
 import { Project } from '../models/Project';
 
@@ -39,11 +39,16 @@ export class ProyectService {
   }
 
   editProject(project :Project, userId: number){
-    console.log(this.proyectUrl+"/create/"+userId);
-    console.log(project);
-    return this.http.post<Project>(this.proyectUrl+"/create/"+userId,project);
+    
+    return this.http.post<Project>(this.proyectUrl+"/edit/"+userId,project);
   }
 
+  deleteProject(id :number){
+  
+    return this.http.delete<Project>(this.proyectUrl+"/"+id);
+  }
+
+  
 
   getId(username: String): Observable<any> {
     return this.http.get<any>(this.miApiUrl + "/MyUsers/get/" + username);

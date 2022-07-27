@@ -21,7 +21,6 @@ export class LinksShowComponent implements OnInit {
    this.getAllLinks();
   }
   logout(){
-    sessionStorage.clear();
     this.ruta.navigate(['/login']);
   }
   // connect angular with rest api 

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Education } from '../models/Education';
 import { AuthenticationService } from './authentication.service';
 
 @Injectable({
@@ -23,7 +24,7 @@ export class EducationService {
 
       this.id = data;
     })
-    await new Promise(f => setTimeout(f, 100));
+    await new Promise(f => setTimeout(f, 300));
     return this.http.get<any>(this.educationUrl+'/get/'+this.id);  
   }
   //for public
@@ -33,9 +34,24 @@ export class EducationService {
 
       this.id = data;
     })
-    await new Promise(f => setTimeout(f, 100));
+    await new Promise(f => setTimeout(f, 300));
     return this.http.get<any>(this.educationUrl+'/get/'+this.id);  
   }
+
+  addEducation(education :Education, userId:number){
+    return this.http.post<Education>(this.educationUrl+"/create/"+userId,education);
+  }
+
+  editEducation(education :Education, userId: number){
+    
+    return this.http.post<Education>(this.educationUrl+"/edit/"+userId,education);
+  }
+
+  deleteEducation(id :number){
+  
+    return this.http.delete<Education>(this.educationUrl+"/"+id);
+  }
+
 
   getId(username: String): Observable<any> {
     return this.http.get<any>(this.miApiUrl + "/MyUsers/get/" + username);

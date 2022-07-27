@@ -28,6 +28,10 @@ import { LinksShowComponent } from './components/links-show/links-show.component
 import { ProyectsShowComponent } from './components/proyects-show/proyects-show.component';
 import { SkillsShowComponent } from './components/skills-show/skills-show.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AlifeFileToBase64Module } from 'alife-file-to-base64';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgSrcModule } from 'ng-src';
+
 
 
 @NgModule({
@@ -63,6 +67,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserModule,
     ReactiveFormsModule,
     NgbModule,
+    AlifeFileToBase64Module,
+    BrowserAnimationsModule,
+    NgSrcModule
   ],
   providers: [ProyectService,
   { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi:true}

@@ -10,7 +10,7 @@ import { AboutMeService } from 'src/app/services/about-me.service';
 })
 export class AboutMeShowComponent implements OnInit {
   username:string;
-  person: Person= new Person("","","","")
+  person: Person= new Person("","","","","")
   constructor(private personService: AboutMeService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
