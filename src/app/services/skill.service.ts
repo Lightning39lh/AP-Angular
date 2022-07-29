@@ -9,11 +9,10 @@ import { AuthenticationService } from './authentication.service';
 })
 export class SkillService {
   id:number = 0;
-  private miApiUrl = 'http://localhost:8080';
+  //private miApiUrl = 'http://localhost:8080';
+  private miApiUrl = 'https://portfoil-bracciale.herokuapp.com';
   private skillUrl = this.miApiUrl + '/skills' ;
-
   constructor(private http: HttpClient, private aS: AuthenticationService) { }
-
   async getAllSkills(): Promise<Observable<any>> {
     
     var currentUser = this.aS.AuthenticatedUser;
@@ -21,7 +20,7 @@ export class SkillService {
     this.getId(currentUser.username).subscribe(data => {
       this.id = data;
     })
-    await new Promise(f => setTimeout(f, 300));
+    await new Promise(f => setTimeout(f, 1000));
     return this.http.get<any>(this.skillUrl+'/get/'+this.id);  
   }
 
@@ -32,7 +31,7 @@ export class SkillService {
 
       this.id = data;
     })
-    await new Promise(f => setTimeout(f, 300));
+    await new Promise(f => setTimeout(f, 1000));
     return this.http.get<any>(this.skillUrl+'/get/'+this.id);  
   }
 

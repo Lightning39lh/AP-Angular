@@ -11,7 +11,8 @@ import { AuthenticationService } from './authentication.service';
 export class ExperienceService {
 
   id:number = 0;
-  private miApiUrl = 'http://localhost:8080';
+  //private miApiUrl = 'http://localhost:8080';
+  private miApiUrl = 'https://portfoil-bracciale.herokuapp.com';
   private experienceUrl = this.miApiUrl + '/experience' ;
 
   constructor(private http: HttpClient, private aS: AuthenticationService, ) { }
@@ -21,7 +22,7 @@ export class ExperienceService {
     this.getId(currentUser.username).subscribe(data => {
       this.id = data;
     })
-    await new Promise(f => setTimeout(f, 300));
+    await new Promise(f => setTimeout(f, 1000));
     return this.http.get<any>(this.experienceUrl+'/get/'+this.id);  
   }
   async getAllExperiences(username): Promise<Observable<any>> {

@@ -6,7 +6,8 @@ import { User } from '../models/User';
   providedIn: 'root'
 })
 export class SingInService {
-  URL = 'http://localhost:8080/MyUsers/';
+  //private URL = 'http://localhost:8080/MyUsers/';
+  URL = 'https://portfoil-bracciale.herokuapp.com/MyUsers/';
   constructor(public http : HttpClient) { }
 
   getAllUsers(){

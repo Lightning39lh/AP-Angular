@@ -10,7 +10,8 @@ import { AuthenticationService } from './authentication.service';
 export class LinkService {
 
   id:number = 0;
-  private miApiUrl = 'http://localhost:8080';
+  //private miApiUrl = 'http://localhost:8080';
+  private miApiUrl = 'https://portfoil-bracciale.herokuapp.com';
   private linkUrl = this.miApiUrl + '/links' ;
 
   constructor(private http: HttpClient, private aS: AuthenticationService) { }
@@ -20,7 +21,7 @@ export class LinkService {
    this.getId(currentUser.username).subscribe(data => {
       this.id = data;
     })
-    await new Promise(f => setTimeout(f, 300));
+    await new Promise(f => setTimeout(f, 1000));
     return this.http.get<any>(this.linkUrl+'/get/'+this.id);  
   }
 
@@ -28,7 +29,7 @@ export class LinkService {
     this.getId(currentUser).subscribe(data => {
       this.id = data;
     })
-    await new Promise(f => setTimeout(f, 300));
+    await new Promise(f => setTimeout(f, 1000));
     return this.http.get<any>(this.linkUrl+'/get/'+this.id);
   }
 

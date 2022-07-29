@@ -16,7 +16,6 @@ export class EducationShowComponent implements OnInit {
   ngOnInit(): void {
     this.username = this.route.snapshot.paramMap.get("username")
    this.getAllEducations();
- 
 
   }
 

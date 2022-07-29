@@ -10,7 +10,8 @@ import { AuthenticationService } from './authentication.service';
 export class AboutMeService {
 
   id:number = 0;
-  private miApiUrl = 'http://localhost:8080';
+  //private miApiUrl = 'http://localhost:8080';
+  private miApiUrl = 'https://portfoil-bracciale.herokuapp.com';
   private personUrl = this.miApiUrl + '/persons' ;
 
   constructor(private http: HttpClient, private aS: AuthenticationService) { }
@@ -20,7 +21,7 @@ export class AboutMeService {
     this.getId(currentUser.username).subscribe(data => {
       this.id = data;
     })
-    await new Promise(f => setTimeout(f, 100));
+    await new Promise(f => setTimeout(f, 1000));
     return this.http.get<any>(this.personUrl+'/get/'+this.id);  
   }
 
