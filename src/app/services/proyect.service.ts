@@ -18,22 +18,12 @@ export class ProyectService {
 
   constructor(private http: HttpClient, private aS: AuthenticationService) { }
 
-  async getAllProyects(): Promise<Observable<any>> {
-    var currentUser = this.aS.AuthenticatedUser;
-   this.getId(currentUser.username).subscribe(data => {
-      this.id = data;
-    })
-    await new Promise(f => setTimeout(f, 1000));
-    return this.http.get<any>(this.proyectUrl+'/get/'+this.id);  
+  getAllProyects(userId){
+  
+    return this.http.get<any>(this.proyectUrl+'/get/'+userId);  
   }
 
-  async getAllProyectsPublic(currentUser: string) {
-    this.getId(currentUser).subscribe(data => {
-      this.id = data;
-    })
-    await new Promise(f => setTimeout(f, 1000));
-    return this.http.get<any>(this.proyectUrl+'/get/'+this.id);
-  }
+
 
   addProject(project :Project, userId:number){
     return this.http.post<Project>(this.proyectUrl+"/create/"+userId,project);

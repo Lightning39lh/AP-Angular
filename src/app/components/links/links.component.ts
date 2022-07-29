@@ -22,7 +22,7 @@ export class LinksComponent implements OnInit {
 
   ngOnInit(): void {
     
-   this.getAllLinks();
+  
 
    this.editForm = this.fb.group({
     id: [''],
@@ -33,11 +33,12 @@ export class LinksComponent implements OnInit {
    var currentUser = this.aS.AuthenticatedUser;
    this.linkService.getId(currentUser.username).subscribe(data => {
       this.UserId = data;
+      this.getAllLinks();
     })
   }
 
-  async getAllLinks(): Promise<void> {
-    (await this.linkService.getAllLinks()).subscribe(data => {
+  getAllLinks(){
+    (this.linkService.getAllLinks(this.UserId)).subscribe(data => {
       this.link=data;
      })
     }
@@ -59,8 +60,9 @@ openEdit(targetModal, link:Link) {
   onEdit(){
     console.log(this.editForm.value);
     this.linkService.editProject(this.editForm.value,this.UserId).subscribe(data => {console.log("se edito bien");
+    location.reload();
   });
-  location.reload();
+  
   }
 
   logout(){

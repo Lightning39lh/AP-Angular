@@ -11,17 +11,21 @@ import { ExperienceService } from 'src/app/services/experience.service';
 export class ExperienceShowComponent implements OnInit {
   username:string;
   experiences: Experience[] = [];
+  UserId: number;
   constructor(private experienceService: ExperienceService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.username = this.route.snapshot.paramMap.get("username")
-   this.getAllExperiences();
+    this.experienceService.getId(this.username).subscribe(data => {
+      this.UserId = data;
+      this.getAllExperiences();
+    })
   }
   
  // connect angular with rest api 
-  async getAllExperiences(): Promise<void> {
+  getAllExperiences(){
 
-    (await this.experienceService.getAllExperiences(this.username)).subscribe(data => {
+    (this.experienceService.getAllExperiences(this.UserId)).subscribe(data => {
       this.experiences = data;
      })
     }

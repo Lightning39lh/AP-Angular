@@ -10,21 +10,26 @@ import { AboutMeService } from 'src/app/services/about-me.service';
 })
 export class AboutMeShowComponent implements OnInit {
   username:string;
-  person: Person= new Person("","","","","")
+  person: Person= new Person("","","","","");
+  UserId:number;
   constructor(private personService: AboutMeService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.username = this.route.snapshot.paramMap.get("username")
-   this.getAllPersons();
+    this.personService.getId(this.username).subscribe(data => {
+      this.UserId = data;
+      this.getAllPersons(this.UserId);
+    })
+  
  
 
   }
 
  // connect angular with rest api 
-  async getAllPersons(): Promise<void> {
-    (await this.personService.getAllPersons(this.username)).subscribe(data => {
-      this.person = data;
-     })
-    }
+ getAllPersons(UserId:number) {
+  (this.personService.getAllPersons(UserId)).subscribe(data => {
+    this.person = data;
+  })
+}
 
 }

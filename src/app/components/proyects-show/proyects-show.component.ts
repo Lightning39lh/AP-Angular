@@ -14,18 +14,22 @@ export class ProyectsShowComponent implements OnInit {
 
   username:string;
   projects: Project[] = [];
+  UserId: number;
   constructor(private proyectService: ProyectService,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
    this.username = this.route.snapshot.paramMap.get("username")
-   this.getAllProyects();
+   this.proyectService.getId(this.username).subscribe(data => {
+    this.UserId = data;
+    this.getAllProyects();
+  })
  
 
   }
 
  // connect angular with rest api 
-  async getAllProyects(): Promise<void> {
-    (await this.proyectService.getAllProyectsPublic(this.username)).subscribe(data => {
+  getAllProyects(){
+    (this.proyectService.getAllProyects(this.UserId)).subscribe(data => {
       this.projects = data;
      })
     }

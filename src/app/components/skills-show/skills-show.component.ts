@@ -11,18 +11,22 @@ import { SkillService } from 'src/app/services/skill.service';
 export class SkillsShowComponent implements OnInit {
   username:string;
   skills: Skill[] = [];
+  UserId: number;
   constructor(private skillService: SkillService,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.username = this.route.snapshot.paramMap.get("username")
-   this.getAllSkills();
+    this.skillService.getId(this.username).subscribe(data => {
+      this.UserId = data;
+      this.getAllSkills();
+    })
  
 
   }
 
  // connect angular with rest api 
-  async getAllSkills(): Promise<void> {
-    (await this.skillService.getAllSkillsPublic(this.username)).subscribe(data => {
+  getAllSkills() {
+    (this.skillService.getAllSkills(this.UserId)).subscribe(data => {
       this.skills = data;
      })
     }

@@ -22,7 +22,7 @@ export class EducationComponent implements OnInit {
 
   ngOnInit(): void {
    
-   this.getAllEducations();
+
 
    this.editForm = this.fb.group({
     id: [''],
@@ -34,14 +34,15 @@ export class EducationComponent implements OnInit {
    var currentUser = this.aS.AuthenticatedUser;
    this.educationService.getId(currentUser.username).subscribe(data => {
       this.UserId = data;
+      this.getAllEducations();
     })
  
 
   }
 
  // connect angular with rest api 
-  async getAllEducations(): Promise<void> {
-    (await this.educationService.getAllEducations()).subscribe(data => {
+  getAllEducations(){
+    (this.educationService.getAllEducations(this.UserId)).subscribe(data => {
       this.educations = data;
      })
     }
@@ -84,21 +85,24 @@ openEdit(targetModal, education:Education) {
   onAdd(){
   this.UserId;
     this.educationService.addEducation(this.editForm.value,this.UserId).subscribe(data => {console.log("se agrego bien");
-    });
     location.reload();
+    });
+   
   }
 
   onEdit(){
     console.log(this.editForm.value);
     this.educationService.editEducation(this.editForm.value,this.UserId).subscribe(data => {
       console.log("se edito bien");
+      location.reload();
   });
-  location.reload();
+  
   }
  
   onDelete(){
     this.educationService.deleteEducation(this.deleteId).subscribe(data => {console.log("se elimino bien");
+    location.reload();
   });
-  location.reload();
+  
  }
 }

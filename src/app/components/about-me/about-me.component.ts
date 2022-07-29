@@ -21,7 +21,6 @@ export class AboutMeComponent implements OnInit {
 
   ngOnInit(): void {
     this.username = this.route.snapshot.paramMap.get("username")
-    this.getAllPersons();
 
     this.editForm = this.fb.group({
       id: [''],
@@ -35,14 +34,15 @@ export class AboutMeComponent implements OnInit {
     var currentUser = this.aS.AuthenticatedUser;
     this.personService.getId(currentUser.username).subscribe(data => {
       this.UserId = data;
+      this.getAllPersons(this.UserId);
     })
 
 
   }
 
   // connect angular with rest api 
-  async getAllPersons(): Promise<void> {
-    (await this.personService.getAllPersonsPrivate()).subscribe(data => {
+  getAllPersons(UserId:number) {
+    (this.personService.getAllPersons(UserId)).subscribe(data => {
       this.person = data;
     })
   }
@@ -68,8 +68,8 @@ export class AboutMeComponent implements OnInit {
     console.log(this.editForm.value);
     this.personService.editPerson(this.editForm.value, this.UserId).subscribe(data => {
       console.log("se edito bien");
+      location.reload();
     });
-    location.reload();
   }
 
   onImgChanged(e){

@@ -28,7 +28,7 @@ export class ProyectsComponent implements OnInit {
 
   ngOnInit(): void {
    
-   this.getAllProyects();
+   
 
    this.editForm = this.fb.group({
     id: [''],
@@ -40,12 +40,13 @@ export class ProyectsComponent implements OnInit {
    var currentUser = this.aS.AuthenticatedUser;
    this.proyectService.getId(currentUser.username).subscribe(data => {
       this.UserId = data;
+      this.getAllProyects();
     })
   }
 
  // connect angular with rest api 
-  async getAllProyects(): Promise<void> {
-    (await this.proyectService.getAllProyects()).subscribe(data => {
+  getAllProyects(){
+    (this.proyectService.getAllProyects(this.UserId)).subscribe(data => {
       this.projects = data;
      })
     }
@@ -87,21 +88,24 @@ openEdit(targetModal, project:Project) {
   onAdd(){
   this.UserId;
     this.proyectService.addProject(this.editForm.value,this.UserId).subscribe(data => {console.log("se agrego bien");
-    });
     location.reload();
+    });
+    
   }
 
   onEdit(){
     console.log(this.editForm.value);
     this.proyectService.editProject(this.editForm.value,this.UserId).subscribe(data => {
       console.log("se edito bien");
+      location.reload();
   });
-  location.reload();
+  
   }
  
   onDelete(){
     this.proyectService.deleteProject(this.deleteId).subscribe(data => {console.log("se elimino bien");
+    location.reload();
   });
-  location.reload();
+  
  }
 }

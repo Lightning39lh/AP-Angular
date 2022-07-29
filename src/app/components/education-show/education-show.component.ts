@@ -11,17 +11,21 @@ import { EducationService } from 'src/app/services/education.service';
 export class EducationShowComponent implements OnInit {
   username:string;
   educations: Education[] = [];
+  UserId: number;
   constructor(private educationService: EducationService,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.username = this.route.snapshot.paramMap.get("username")
-   this.getAllEducations();
+    this.username = this.route.snapshot.paramMap.get("username");
+    this.educationService.getId(this.username).subscribe(data => {
+      this.UserId = data;
+      this.getAllEducations();
+    })
 
   }
 
  // connect angular with rest api 
-  async getAllEducations(): Promise<void> {
-    (await this.educationService.getAllEducationsPublic(this.username)).subscribe(data => {
+  getAllEducations() {
+    (this.educationService.getAllEducations(this.UserId)).subscribe(data => {
       this.educations = data;
      })
     }

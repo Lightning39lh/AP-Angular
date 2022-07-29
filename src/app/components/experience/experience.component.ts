@@ -22,7 +22,7 @@ export class ExperienceComponent implements OnInit {
   constructor(private experienceService: ExperienceService, private modalService: NgbModal, private aS: AuthenticationService, private fb: FormBuilder, public httpClient:HttpClient) { }
 
   ngOnInit(): void {
-   this.getAllExperiences();
+ 
 
    this.editForm = this.fb.group({
     id: [''],
@@ -34,13 +34,14 @@ export class ExperienceComponent implements OnInit {
    var currentUser = this.aS.AuthenticatedUser;
    this.experienceService.getId(currentUser.username).subscribe(data => {
       this.UserId = data;
+      this.getAllExperiences();
     })
   }
   
  // connect angular with rest api 
-  async getAllExperiences(): Promise<void> {
+getAllExperiences(){
 
-    (await this.experienceService.getAllExperiencesPrivate()).subscribe(data => {
+    (this.experienceService.getAllExperiences(this.UserId)).subscribe(data => {
       this.experiences = data;
      })
     }
@@ -83,22 +84,25 @@ openEdit(targetModal, experience:Experience) {
   onAdd(){
   this.UserId;
     this.experienceService.addExperience(this.editForm.value,this.UserId).subscribe(data => {console.log("se agrego bien");
-    });
     location.reload();
+    });
+    
   }
 
   onEdit(){
     console.log(this.editForm.value);
     this.experienceService.editExperience(this.editForm.value,this.UserId).subscribe(data => {
       console.log("se edito bien");
+      location.reload();
   });
-  location.reload();
+  
   }
  
   onDelete(){
     this.experienceService.deleteExperience(this.deleteId).subscribe(data => {console.log("se elimino bien");
+    location.reload();
   });
-  location.reload();
+  
  }
 
 }

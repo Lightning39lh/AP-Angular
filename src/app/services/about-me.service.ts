@@ -16,25 +16,10 @@ export class AboutMeService {
 
   constructor(private http: HttpClient, private aS: AuthenticationService) { }
 
-  async getAllPersonsPrivate(): Promise<Observable<any>> {
-    var currentUser = this.aS.AuthenticatedUser;
-    this.getId(currentUser.username).subscribe(data => {
-      this.id = data;
-    })
-    await new Promise(f => setTimeout(f, 1000));
-    return this.http.get<any>(this.personUrl+'/get/'+this.id);  
-  }
-
-  async getAllPersons(username): Promise<Observable<any>> {
-   
-    this.getId(username).subscribe(data => {
-      this.id = data;
-    })
-    await new Promise(f => setTimeout(f, 100));
-    return this.http.get<any>(this.personUrl+'/get/'+this.id);  
-  }
-
   
+  getAllPersons(UserId:number) {
+    return this.http.get<any>(this.personUrl+'/get/'+UserId);  
+  }
   editPerson(person :Person, userId: number){
     
     return this.http.post<Person>(this.personUrl+"/edit/"+userId,person);

@@ -16,27 +16,9 @@ export class EducationService {
 
   constructor(private http: HttpClient, private aS: AuthenticationService) { }
 
-  //for private
-  async getAllEducations(): Promise<Observable<any>> {
+  getAllEducations(UserId:number) {
     
-    var currentUser = this.aS.AuthenticatedUser;
-    
-    this.getId(currentUser.username).subscribe(data => {
-
-      this.id = data;
-    })
-    await new Promise(f => setTimeout(f, 1000));
-    return this.http.get<any>(this.educationUrl+'/get/'+this.id);  
-  }
-  //for public
-  async getAllEducationsPublic(currentUser: string): Promise<Observable<any>> {
- 
-    this.getId(currentUser).subscribe(data => {
-
-      this.id = data;
-    })
-    await new Promise(f => setTimeout(f, 300));
-    return this.http.get<any>(this.educationUrl+'/get/'+this.id);  
+   return this.http.get<any>(this.educationUrl+'/get/'+UserId);  
   }
 
   addEducation(education :Education, userId:number){

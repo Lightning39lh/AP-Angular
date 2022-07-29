@@ -16,22 +16,12 @@ export class LinkService {
 
   constructor(private http: HttpClient, private aS: AuthenticationService) { }
 
-  async getAllLinks(): Promise<Observable<any>> {
-    var currentUser = this.aS.AuthenticatedUser;
-   this.getId(currentUser.username).subscribe(data => {
-      this.id = data;
-    })
-    await new Promise(f => setTimeout(f, 1000));
-    return this.http.get<any>(this.linkUrl+'/get/'+this.id);  
-  }
 
-  async getAllLinksPublic(currentUser: string) {
-    this.getId(currentUser).subscribe(data => {
-      this.id = data;
-    })
-    await new Promise(f => setTimeout(f, 1000));
-    return this.http.get<any>(this.linkUrl+'/get/'+this.id);
+  getAllLinks(userId) {
+    
+    return this.http.get<any>(this.linkUrl+'/get/'+userId);  
   }
+  
 
   editProject(link :Link, userId: number){
     console.log(this.linkUrl+"/create/"+userId);

@@ -23,7 +23,7 @@ export class SkillsComponent implements OnInit {
 
   ngOnInit(): void {
    
-   this.getAllSkills();
+   
    this.editForm = this.fb.group({
     id: [''],
     img:[''],
@@ -32,18 +32,22 @@ export class SkillsComponent implements OnInit {
   var currentUser = this.aS.AuthenticatedUser;
   this.skillService.getId(currentUser.username).subscribe(data => {
      this.UserId = data;
+     this.getAllSkills();
    })
-   console.log(this.UserId);
  }
 
 
  // connect angular with rest api 
-  async getAllSkills(): Promise<void> {
+  /*async getAllSkills(): Promise<void> {
     (await this.skillService.getAllSkills()).subscribe(data => {
       this.skills = data;
      })
-    }
-
+    }*/
+       getAllSkills() {
+        (this.skillService.getAllSkills(this.UserId)).subscribe(data => {
+          this.skills = data;
+        })
+      }
   
 openAdd(targetModal) {
   this.modalService.open(targetModal, {
@@ -67,7 +71,6 @@ openEdit(targetModal, skill:Skill) {
       });
       console.log(this.editForm.value);
     }
-    
   openDelete(targetModal, skill:Skill) {
     this.deleteId = skill.id;
     this.modalService.open(targetModal, {
@@ -75,33 +78,31 @@ openEdit(targetModal, skill:Skill) {
       size: 'lg'
     });
   }
-
-  
-
   onAdd(){
-  this.UserId;
-    this.skillService.addSkill(this.editForm.value,this.UserId).subscribe(data => {console.log("se agrego bien");
-    });
+    console.log(this.editForm.value);
+    this.skillService.addSkill(this.editForm.value,this.UserId).subscribe(data => {
+      console.log("se agrego bien");
     location.reload();
+    });
+    
   }
-
   onEdit(){
     console.log(this.editForm.value);
     this.skillService.editSkill(this.editForm.value,this.UserId).subscribe(data => {
       console.log("se edito bien");
+      location.reload();
   });
-  location.reload();
-  }
-
   
+  }
   onImgChanged(e){
     this.editForm.value.img =e[0].base64;
  }
- 
+
   onDelete(){
     this.skillService.deleteSkill(this.deleteId).subscribe(data => {console.log("se elimino bien");
+    location.reload();
   });
-  location.reload();
+  
  }
 
 }
