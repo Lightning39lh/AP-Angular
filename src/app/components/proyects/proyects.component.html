@@ -5,7 +5,7 @@
   </div>
   <div class="col-6 ">
     <a class="btn btn-edit p-0"
-    (click)="openAdd(addProject)"
+    (click)="openAdd(addProject)" placement="bottom" ngbTooltip="add project"
     > <i class="fa-solid fa-square-plus" style='font-size:36px'></i> </a>
   </div>
 
@@ -19,8 +19,8 @@
     </div>
 
     <div class="col-3 col-sm-1 ">
-      <a (click)="openEdit(editProject, project)" class="btn btn-edit p-0"><i class="fa-solid fa-pen"></i></a>
-      <a (click)="openDelete(deleteProject, project)" class="btn btn-edit p-0"><i class="fa-solid fa-eraser"></i></a>
+      <a (click)="openEdit(editProject, project)" class="btn btn-edit p-0" placement="bottom" ngbTooltip="edit project"><i class="fa-solid fa-pen"></i></a>
+      <a (click)="openDelete(deleteProject, project)" class="btn btn-edit p-0" placement="bottom" ngbTooltip="delete project"><i class="fa-solid fa-eraser"></i></a>
     </div>
 
 

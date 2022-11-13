@@ -5,7 +5,7 @@
       </div>
       <div class="col-6 ">
         <a class="btn btn-edit p-0"
-        (click)="openAdd(addSkill)"
+        (click)="openAdd(addSkill)" placement="bottom" ngbTooltip="add skill"
         > <i class="fa-solid fa-square-plus" style='font-size:36px'></i> </a>
       </div>
   
@@ -19,8 +19,8 @@
                         <h4>{{skill.title}}</h4> 
                 </div>
                 <div class="buttons" >
-                  <a (click)="openEdit(editSkill, skill)" class="btn btn-edit p-0"><i class="fa-solid fa-pen"></i></a>
-                  <a (click)="openDelete(deleteSkill, skill)" class="btn btn-edit p-0"><i class="fa-solid fa-eraser"></i></a>
+                  <a (click)="openEdit(editSkill, skill)" class="btn btn-edit p-0" placement="bottom" ngbTooltip="edit skill"><i class="fa-solid fa-pen"></i></a>
+                  <a (click)="openDelete(deleteSkill, skill)" class="btn btn-edit p-0" placement="bottom" ngbTooltip="delete skill"><i class="fa-solid fa-eraser"></i></a>
               </div>
             </div>
             

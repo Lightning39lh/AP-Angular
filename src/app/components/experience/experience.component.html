@@ -4,7 +4,7 @@
         <h1>Experience</h1>
     </div>
     <div class="col-6">
-        <a class="btn btn-edit p-0" (click)="openAdd(addExperience)"> <i class="fa-solid fa-square-plus"
+        <a class="btn btn-edit p-0" (click)="openAdd(addExperience)" placement="bottom" ngbTooltip="add experience"> <i class="fa-solid fa-square-plus"
                 style='font-size:36px'></i> </a>
     </div>
 </div>
@@ -16,8 +16,8 @@
         </div>
     
     <div class="col-3 col-sm-1 ">
-        <a (click)="openEdit(editExperience, experience)" class="btn btn-edit p-0"><i class="fa-solid fa-pen"></i></a>
-        <a (click)="openDelete(deleteExperience, experience)" class="btn btn-edit p-0"><i
+        <a (click)="openEdit(editExperience, experience)" class="btn btn-edit p-0" placement="bottom" ngbTooltip="edit experience"><i class="fa-solid fa-pen"></i></a>
+        <a (click)="openDelete(deleteExperience, experience)" class="btn btn-edit p-0" placement="bottom" ngbTooltip="delete experience"><i
                 class="fa-solid fa-eraser"></i></a>
     </div>
 </div>

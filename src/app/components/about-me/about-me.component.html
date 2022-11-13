@@ -10,7 +10,7 @@
         <p>{{person.degree}}</p>
     </div>
     <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-        <a (click)="openEdit(editPerson, person)" class="btn btn-edit p-0"><i class="fa-solid fa-pen"></i></a>
+        <a (click)="openEdit(editPerson, person)" class="btn btn-edit p-0" placement="bottom" ngbTooltip="edit about me"><i class="fa-solid fa-pen"></i></a>
         <h1>About me</h1>
         <p>{{person.aboutMe}}</p>
     </div>
@@ -21,7 +21,8 @@
 <ng-template #editPerson let-modal>
     <div class="modal-header">
         <h4 class="modal-title" id="modal-basic-title2">Edit User</h4>
-        <button type="button" class="btn-close btn" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <button type="button" class="btn-close btn" aria-label="Close" 
+        (click)="modal.dismiss('Cross click')">
         </button>
     </div>
     <div class="modal-body">

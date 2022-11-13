@@ -4,7 +4,7 @@
         <h1>Education</h1>
     </div>
     <div class="col-6">
-        <a class="btn btn-edit p-0" (click)="openAdd(addEducation)"> <i class="fa-solid fa-square-plus"
+        <a class="btn btn-edit p-0" (click)="openAdd(addEducation)" placement="bottom" ngbTooltip="add education"> <i class="fa-solid fa-square-plus"
                 style='font-size:36px'></i> </a>
     </div>
 </div>
@@ -16,8 +16,8 @@
     </div>
 
     <div class="col-3 col-sm-1 ">
-        <a (click)="openEdit(editEducation, education)" class="btn btn-edit p-0"><i class="fa-solid fa-pen"></i></a>
-        <a (click)="openDelete(deleteEducation, education)" class="btn btn-edit p-0"><i
+        <a (click)="openEdit(editEducation, education)" class="btn btn-edit p-0" placement="bottom" ngbTooltip="edit education"><i class="fa-solid fa-pen"></i></a>
+        <a (click)="openDelete(deleteEducation, education)" class="btn btn-edit p-0" placement="bottom" ngbTooltip="delete education"><i
                 class="fa-solid fa-eraser"></i></a>
     </div>
 
